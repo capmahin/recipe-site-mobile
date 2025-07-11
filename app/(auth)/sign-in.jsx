@@ -15,14 +15,32 @@ const SignInScreen = () => {
   const handleSignIn = async () => {
     if (!email || !password) {
       Alert.alert("Error", "Please fill in all fields");
+      return;
     }
-  };
+    if (!isLoaded) return;
 
-  return (
-    <View>
-      <Text>Sign In</Text>
-    </View>
-  );
+    setLoading(true);
+    try {
+      const signInAttempt = await signIn.create({
+        identifier: email,
+        password
+      });
+      if (signInAttempt.status === "complete") {
+        await setActive({ session: signInAttempt.createdSessionId });
+      } else {
+        Alert.alert("Error", "Sign in failed. Please try again");
+        console.error(JSON.stringify(signInAttempt, null, 2));
+      }
+    } catch (error) {
+    } finally {
+    }
+
+    return (
+      <View>
+        <Text>Sign In</Text>
+      </View>
+    );
+  };
 };
 
 export default SignInScreen;

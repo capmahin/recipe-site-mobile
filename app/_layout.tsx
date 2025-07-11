@@ -1,10 +1,11 @@
-import { Stack } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Slot } from "expo-router";
+import { tokenCache } from "@clerk/clerk-expo/token-cache";
 
+import { ClerkProvider } from "@clerk/clerk-expo";
 export default function RootLayout() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Stack screenOptions={{ headerShown: false }} />
-    </SafeAreaView>
+    <ClerkProvider tokenCache={tokenCache}>
+      <Slot />
+    </ClerkProvider>
   );
 }

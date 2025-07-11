@@ -4,13 +4,15 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform,
-  ScrollView
+  ScrollView,
+  TextInput
 } from "react-native";
 import { useSignIn } from "@clerk/clerk-expo";
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import { authStyles } from "./../../assets/styles/auth.styles";
 import { Image } from "expo-image";
+import { COLORS } from "../../constants/colors";
 
 const SignInScreen = () => {
   const router = useRouter();
@@ -68,6 +70,19 @@ const SignInScreen = () => {
               source={require("../../assets/images/i1.png")}
               style={authStyles.image}
               contentFit="contain"
+            />
+          </View>
+          <Text style={authStyles.title}>Welcome Back</Text>
+          {/* FORM CONTAINER */}
+          <View style={authStyles.formContainer}>
+            <TextInput
+              style={authStyles.textInput}
+              placeholder="Enter email"
+              placeholderTextColor={COLORS.textLight}
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
             />
           </View>
         </ScrollView>

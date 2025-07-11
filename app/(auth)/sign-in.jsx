@@ -3,12 +3,14 @@ import {
   Text,
   Alert,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  ScrollView
 } from "react-native";
 import { useSignIn } from "@clerk/clerk-expo";
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import { authStyles } from "./../../assets/styles/auth.styles";
+import { Image } from "expo-image";
 
 const SignInScreen = () => {
   const router = useRouter();
@@ -56,7 +58,20 @@ const SignInScreen = () => {
       <KeyboardAvoidingView
         style={authStyles.keyboardView}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-      ></KeyboardAvoidingView>
+      >
+        <ScrollView
+          contentContainerStyle={authStyles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={authStyles.imageContainer}>
+            <Image
+              source={require("../../assets/images/i1.png")}
+              style={authStyles.image}
+              contentFit="contain"
+            />
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </View>
   );
 };

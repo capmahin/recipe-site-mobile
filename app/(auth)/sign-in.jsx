@@ -1,7 +1,14 @@
-import { View, Text, Alert } from "react-native";
+import {
+  View,
+  Text,
+  Alert,
+  KeyboardAvoidingView,
+  Platform
+} from "react-native";
 import { useSignIn } from "@clerk/clerk-expo";
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
+import { authStyles } from "./../../assets/styles/auth.styles";
 
 const SignInScreen = () => {
   const router = useRouter();
@@ -44,6 +51,14 @@ const SignInScreen = () => {
       </View>
     );
   };
+  return (
+    <View style={authStyles.container}>
+      <KeyboardAvoidingView
+        style={authStyles.keyboardView}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      ></KeyboardAvoidingView>
+    </View>
+  );
 };
 
 export default SignInScreen;

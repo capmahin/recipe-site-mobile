@@ -110,6 +110,30 @@ const SignUpScreen = () => {
                 />
               </TouchableOpacity>
             </View>
+            {/* Sign Up Button */}
+            <TouchableOpacity
+              style={[
+                authStyles.authButton,
+                loading && authStyles.buttonDisabled
+              ]}
+              onPress={handleSignUp}
+              disabled={loading}
+              activeOpacity={0.8}
+            >
+              <Text style={authStyles.buttonText}>
+                {loading ? "Creating Account..." : "Sign Up"}
+              </Text>
+            </TouchableOpacity>
+            {/* Sign In Link */}
+            <TouchableOpacity
+              style={authStyles.linkContainer}
+              onPress={() => router.back()}
+            >
+              <Text style={authStyles.linkText}>
+                Already have an account?{" "}
+                <Text style={authStyles.link}>Sign In</Text>
+              </Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

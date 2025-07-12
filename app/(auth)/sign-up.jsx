@@ -1,7 +1,14 @@
-import { View, Text, Alert } from "react-native";
+import {
+  View,
+  Text,
+  Alert,
+  KeyboardAvoidingView,
+  Platform
+} from "react-native";
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import { useSignUp } from "@clerk/clerk-expo";
+import { authStyles } from "./../../assets/styles/auth.styles";
 
 const SignUpScreen = () => {
   const router = useRouter();
@@ -10,7 +17,7 @@ const SignUpScreen = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [pendingVerificartion, setPendingVerification] = useState(false);
+  const [pendingVerification, setPendingVerification] = useState(false);
 
   const handleSignUp = async () => {
     if (!email || !password)
@@ -33,14 +40,21 @@ const SignUpScreen = () => {
         "Error",
         err.errors?.[0]?.message || "Failed to create account"
       );
+      console.error(JSON.stringify(err, null, 2));
     } finally {
       setLoading(false);
     }
   };
 
+  if (pendingVerification) return <Text>pending ui will go here</Text>;
+
   return (
-    <View>
-      <Text>SignUpScreen</Text>
+    <View style={authStyles.container}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+        style={authStyles.keyboardView}
+      ></KeyboardAvoidingView>
     </View>
   );
 };

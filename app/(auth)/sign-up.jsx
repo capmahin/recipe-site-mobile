@@ -17,6 +17,15 @@ const SignUpScreen = () => {
       return Alert.alert("Error", "Please fill in all fields");
     if (password.length < 6)
       return Alert.alert("Error", "Password must be at least 6 characters");
+
+    if (!isLoaded) return;
+    setLoading(true);
+
+    try {
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

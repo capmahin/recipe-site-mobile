@@ -22,6 +22,10 @@ const SignUpScreen = () => {
     setLoading(true);
 
     try {
+      await signUp.create({
+        emailAddress: email,
+        password
+      });
     } catch (error) {
     } finally {
       setLoading(false);

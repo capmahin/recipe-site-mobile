@@ -4,13 +4,15 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform,
-  ScrollView
+  ScrollView,
+  TextInput
 } from "react-native";
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import { useSignUp } from "@clerk/clerk-expo";
 import { authStyles } from "./../../assets/styles/auth.styles";
 import { Image } from "expo-image";
+import { COLORS } from "../../constants/colors";
 
 const SignUpScreen = () => {
   const router = useRouter();
@@ -67,6 +69,18 @@ const SignUpScreen = () => {
               source={require("../../assets/images/i2.png")}
               style={authStyles.image}
               contentFit="contain"
+            />
+          </View>
+          <Text style={authStyles.title}>Create Account</Text>
+          <View style={authStyles.formContainer}>
+            <TextInput
+              style={authStyles.textInput}
+              placeholder="Enter email"
+              placeholderTextColor={COLORS.textLight}
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
             />
           </View>
         </ScrollView>

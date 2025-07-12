@@ -26,7 +26,13 @@ const SignUpScreen = () => {
         emailAddress: email,
         password
       });
-    } catch (error) {
+      await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
+      setPendingVerification(true);
+    } catch (err) {
+      Alert.alert(
+        "Error",
+        err.errors?.[0]?.message || "Failed to create account"
+      );
     } finally {
       setLoading(false);
     }

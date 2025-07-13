@@ -60,6 +60,8 @@ const VerifyEmail = ({ email, onBack }) => {
           <Text style={authStyles.subtitle}>
             We &apos;ve sent a verification code to {email}
           </Text>
+
+          <View style={authStyles.formContainer}></View>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>

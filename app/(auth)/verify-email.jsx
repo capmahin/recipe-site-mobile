@@ -9,6 +9,7 @@ import {
 import React, { useState } from "react";
 import { useSignUp } from "@clerk/clerk-react";
 import { authStyles } from "../../assets/styles/auth.styles";
+import { Image } from "expo-image";
 
 const VerifyEmail = ({ email, onBack }) => {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -45,7 +46,16 @@ const VerifyEmail = ({ email, onBack }) => {
         <ScrollView
           contentContainerStyle={authStyles.scrollContent}
           showsVerticalScrollIndicator={false}
-        ></ScrollView>
+        >
+          {/* Image Container */}
+          <View style={authStyles.imageContainer}>
+            <Image
+              source={require("../../assets/images/i3.png")}
+              style={authStyles.image}
+              contentFit="contain"
+            />
+          </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     </View>
   );

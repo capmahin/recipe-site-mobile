@@ -91,6 +91,12 @@ const VerifyEmail = ({ email, onBack }) => {
                 {loading ? "Verifying..." : "verify Email"}
               </Text>
             </TouchableOpacity>
+            {/* Back to Sign Up */}
+            <TouchableOpacity style={authStyles.linkContainer} onPress={onBack}>
+              <Text style={authStyles.linkText}>
+                <Text style={authStyles.link}>Back to Sign Up</Text>
+              </Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

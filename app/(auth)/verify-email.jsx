@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import React, { useState } from "react";
 import { useSignUp } from "@clerk/clerk-react";
 
@@ -16,6 +16,9 @@ const VerifyEmail = ({ email, onBack }) => {
       });
       if (signUpAttempt.status === "complete") {
         await setActive({ session: signUpAttempt.createdSessionId });
+      } else {
+        Alert.alert("Error", "Verification failed. Please try again");
+        console.error(JSON.stringify(signUpAttempt, null, 2));
       }
     } catch (err) {
     } finally {

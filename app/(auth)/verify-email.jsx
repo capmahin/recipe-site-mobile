@@ -1,7 +1,11 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { useSignUp } from "@clerk/clerk-react";
 
-const VerifyEmail = () => {
+const VerifyEmail = ({ email, onBack }) => {
+  const { isLoaded, signUp, setActive } = useSignUp();
+  const [code, setCode] = useState("");
+  const [loading, setLoading] = useState(false);
   return (
     <View>
       <Text>VerifyEmailScreen</Text>

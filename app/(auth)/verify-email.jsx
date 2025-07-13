@@ -55,6 +55,11 @@ const VerifyEmail = ({ email, onBack }) => {
               contentFit="contain"
             />
           </View>
+          {/* Title */}
+          <Text style={authStyles.title}>Verify Your Email</Text>
+          <Text style={authStyles.subtitle}>
+            We &apos;ve sent a verification code to {email}
+          </Text>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>

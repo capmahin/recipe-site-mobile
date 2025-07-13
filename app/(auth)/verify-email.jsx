@@ -1,4 +1,10 @@
-import { View, Text, Alert } from "react-native";
+import {
+  View,
+  Text,
+  Alert,
+  KeyboardAvoidingView,
+  Platform
+} from "react-native";
 import React, { useState } from "react";
 import { useSignUp } from "@clerk/clerk-react";
 import { authStyles } from "../../assets/styles/auth.styles";
@@ -30,7 +36,11 @@ const VerifyEmail = ({ email, onBack }) => {
   };
   return (
     <View style={authStyles.container}>
-      <Text>VerifyEmailScreen</Text>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={authStyles.keyboardView}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+      ></KeyboardAvoidingView>
     </View>
   );
 };

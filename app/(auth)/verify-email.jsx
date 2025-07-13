@@ -11,7 +11,13 @@ const VerifyEmail = ({ email, onBack }) => {
     if (!isLoaded) return;
     setLoading(true);
     try {
-    } catch (error) {
+      const signUpAttempt = await signUp.attemptEmailAddressVerification({
+        code
+      });
+      if (signUpAttempt.status === "complete") {
+        await setActive({ session: signUpAttempt.createdSessionId });
+      }
+    } catch (err) {
     } finally {
     }
   };

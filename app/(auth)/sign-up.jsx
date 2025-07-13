@@ -8,13 +8,15 @@ import {
   TextInput,
   TouchableOpacity
 } from "react-native";
-import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import { useSignUp } from "@clerk/clerk-expo";
-import { authStyles } from "./../../assets/styles/auth.styles";
+import { useState } from "react";
+import { authStyles } from "../../assets/styles/auth.styles";
 import { Image } from "expo-image";
 import { COLORS } from "../../constants/colors";
+
 import { Ionicons } from "@expo/vector-icons";
+import VerifyEmail from "./verify-email";
 
 const SignUpScreen = () => {
   const router = useRouter();
@@ -32,14 +34,14 @@ const SignUpScreen = () => {
       return Alert.alert("Error", "Password must be at least 6 characters");
 
     if (!isLoaded) return;
+
     setLoading(true);
 
     try {
-      await signUp.create({
-        emailAddress: email,
-        password
-      });
+      await signUp.create({ emailAddress: email, password });
+
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
+
       setPendingVerification(true);
     } catch (err) {
       Alert.alert(
@@ -52,7 +54,10 @@ const SignUpScreen = () => {
     }
   };
 
-  if (pendingVerification) return <Text>pending ui will go here</Text>;
+  if (pendingVerification)
+    return (
+      <VerifyEmail email={email} onBack={() => setPendingVerification(false)} />
+    );
 
   return (
     <View style={authStyles.container}>
@@ -73,7 +78,9 @@ const SignUpScreen = () => {
               contentFit="contain"
             />
           </View>
+
           <Text style={authStyles.title}>Create Account</Text>
+
           <View style={authStyles.formContainer}>
             {/* Email Input */}
             <View style={authStyles.inputContainer}>
@@ -110,6 +117,7 @@ const SignUpScreen = () => {
                 />
               </TouchableOpacity>
             </View>
+
             {/* Sign Up Button */}
             <TouchableOpacity
               style={[
@@ -124,6 +132,7 @@ const SignUpScreen = () => {
                 {loading ? "Creating Account..." : "Sign Up"}
               </Text>
             </TouchableOpacity>
+
             {/* Sign In Link */}
             <TouchableOpacity
               style={authStyles.linkContainer}
@@ -140,5 +149,4 @@ const SignUpScreen = () => {
     </View>
   );
 };
-
 export default SignUpScreen;

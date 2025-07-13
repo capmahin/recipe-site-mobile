@@ -4,12 +4,14 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform,
-  ScrollView
+  ScrollView,
+  TextInput
 } from "react-native";
 import React, { useState } from "react";
 import { useSignUp } from "@clerk/clerk-react";
 import { authStyles } from "../../assets/styles/auth.styles";
 import { Image } from "expo-image";
+import { COLORS } from "../../constants/colors";
 
 const VerifyEmail = ({ email, onBack }) => {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -61,7 +63,20 @@ const VerifyEmail = ({ email, onBack }) => {
             We &apos;ve sent a verification code to {email}
           </Text>
 
-          <View style={authStyles.formContainer}></View>
+          <View style={authStyles.formContainer}>
+            {/* Verification code Input */}
+            <View style={authStyles.inputContainer}>
+              <TextInput
+                style={authStyles.textInput}
+                placeholder="Enter verification code"
+                placeholderTextColor={COLORS.textLight}
+                value={code}
+                onChangeText={setCode}
+                keyboardType="number-pad"
+                autoCapitalize="none"
+              />
+            </View>
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>

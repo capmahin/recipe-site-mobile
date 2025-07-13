@@ -3,7 +3,8 @@ import {
   Text,
   Alert,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  ScrollView
 } from "react-native";
 import React, { useState } from "react";
 import { useSignUp } from "@clerk/clerk-react";
@@ -40,7 +41,12 @@ const VerifyEmail = ({ email, onBack }) => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={authStyles.keyboardView}
         keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
-      ></KeyboardAvoidingView>
+      >
+        <ScrollView
+          contentContainerStyle={authStyles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        ></ScrollView>
+      </KeyboardAvoidingView>
     </View>
   );
 };

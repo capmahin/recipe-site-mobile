@@ -5,7 +5,8 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  TextInput
+  TextInput,
+  TouchableOpacity
 } from "react-native";
 import React, { useState } from "react";
 import { useSignUp } from "@clerk/clerk-react";
@@ -76,6 +77,20 @@ const VerifyEmail = ({ email, onBack }) => {
                 autoCapitalize="none"
               />
             </View>
+            {/* Verify Button */}
+            <TouchableOpacity
+              style={[
+                authStyles.authButton,
+                loading && authStyles.buttonDisabled
+              ]}
+              onPress={handleVerification}
+              disabled={loading}
+              activeOpacity={0.8}
+            >
+              <Text style={authStyles.buttonText}>
+                {loading ? "Verifying..." : "verify Email"}
+              </Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

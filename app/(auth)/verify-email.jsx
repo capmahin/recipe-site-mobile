@@ -1,6 +1,7 @@
 import { View, Text, Alert } from "react-native";
 import React, { useState } from "react";
 import { useSignUp } from "@clerk/clerk-react";
+import { authStyles } from "../../assets/styles/auth.styles";
 
 const VerifyEmail = ({ email, onBack }) => {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -28,7 +29,7 @@ const VerifyEmail = ({ email, onBack }) => {
     }
   };
   return (
-    <View>
+    <View style={authStyles.container}>
       <Text>VerifyEmailScreen</Text>
     </View>
   );

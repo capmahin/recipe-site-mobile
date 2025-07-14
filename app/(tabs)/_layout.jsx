@@ -32,7 +32,7 @@ const TabsLayout = () => {
         options={{
           title: "Favorites",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="favorites" size={size} color={color} />
+            <Ionicons name="heart" size={size} color={color} />
           )
         }}
       />

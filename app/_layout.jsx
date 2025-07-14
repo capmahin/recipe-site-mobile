@@ -5,12 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS } from "../constants/colors";
 export default function RootLayout() {
   return (
-    <ClerkProvider
-      tokenCache={tokenCache}
-      captchaOptions={{
-        disable: __DEV__ // Disables CAPTCHA in development (__DEV__ is true in React Native dev mode)
-      }}
-    >
+    <ClerkProvider tokenCache={tokenCache}>
       <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.background }}>
         <Slot />
       </SafeAreaView>

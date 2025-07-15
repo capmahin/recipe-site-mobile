@@ -8,7 +8,11 @@ const TabsLayout = () => {
 
   // if (!isSignedIn) return <Redirect href={"/(auth)/sign-in"} />;
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        headerShown: false
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{

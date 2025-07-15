@@ -2,6 +2,7 @@ import React from "react";
 import { Redirect, Tabs } from "expo-router";
 import { useAuth } from "@clerk/clerk-expo";
 import { Ionicons } from "@expo/vector-icons";
+import { COLORS } from "../../constants/colors";
 
 const TabsLayout = () => {
   // const { isSignedIn } = useAuth();
@@ -10,7 +11,9 @@ const TabsLayout = () => {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false
+        headerShown: false,
+        tabBarActiveTintColor: COLORS.primary,
+        tabBarInactiveTintColor: COLORS.textLight
       }}
     >
       <Tabs.Screen

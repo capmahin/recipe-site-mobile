@@ -21,6 +21,10 @@ const TabsLayout = () => {
           paddingBottom: 8,
           paddingTop: 8,
           height: 80
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: "600"
         }
       }}
     >
